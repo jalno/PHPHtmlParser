@@ -20,9 +20,7 @@ Usage
 You can find many examples of how to use the dom parser and any of its parts (which you will most likely never touch) in the tests directory. The tests are done using PHPUnit and are very small, a few lines each, and are a great place to start. Given that, I'll still be showing a few examples of how the package should be used. The following example is a very simplistic usage of the package.
 
 ```php
-// Assuming you installed from Composer:
-require "vendor/autoload.php";
-use PHPHtmlParser\Dom;
+use packages\PHPHtmlParser\Dom;
 
 $dom = new Dom;
 $dom->load('<div class="all"><p>Hey bro, <a href="google.com">click here</a><br /> :)</p></div>');
@@ -38,9 +36,7 @@ Loading Files
 You may also seamlessly load a file into the dom instead of a string, which is much more convenient and is how I except most developers will be loading the html. The following example is taken from our test and uses the "big.html" file found there.
 
 ```php
-// Assuming you installed from Composer:
-require "vendor/autoload.php";
-use PHPHtmlParser\Dom;
+use packages\PHPHtmlParser\Dom;
 
 $dom = new Dom;
 $dom->loadFromFile('tests/big.html');
@@ -71,9 +67,7 @@ Loading Url
 Loading a url is very similar to the way you would load the html from a file. 
 
 ```php
-// Assuming you installed from Composer:
-require "vendor/autoload.php";
-use PHPHtmlParser\Dom;
+use packages\PHPHtmlParser\Dom;
 
 $dom = new Dom;
 $dom->loadFromUrl('http://google.com');
@@ -87,10 +81,8 @@ $html = $dom->outerHtml; // same result as the first example
 What makes the loadFromUrl method note worthy is the `PHPHtmlParser\CurlInterface` parameter, an optional second parameter. By default, we use the `PHPHtmlParser\Curl` class to get the contents of the url. On the other hand, though, you can inject your own implementation of CurlInterface and we will attempt to load the url using what ever tool/settings you want, up to you.
 
 ```php
-// Assuming you installed from Composer:
-require "vendor/autoload.php";
-use PHPHtmlParser\Dom;
-use App\Services\Connector;
+use packages\PHPHtmlParser\Dom;
+use packages\App\Services\Connector;
 
 $dom = new Dom;
 $dom->loadFromUrl('http://google.com', [], new Connector);
@@ -105,9 +97,7 @@ Loading Strings
 Loading a string directly, with out the checks in `load()` is also easily done.
 
 ```php
-// Assuming you installed from Composer:
-require "vendor/autoload.php";
-use PHPHtmlParser\Dom;
+use packages\PHPHtmlParser\Dom;
 
 $dom = new Dom;
 $dom->loadStr('<html>String</html>', []);
@@ -122,9 +112,7 @@ Options
 You can also set parsing option that will effect the behavior of the parsing engine. You can set a global option array using the `setOptions` method in the `Dom` object or a instance specific option by adding it to the `load` method as an extra (optional) parameter.
 
 ```php
-// Assuming you installed from Composer:
-require "vendor/autoload.php";
-use PHPHtmlParser\Dom;
+use packages\PHPHtmlParser\Dom;
 
 $dom = new Dom;
 $dom->setOptions([
@@ -177,7 +165,7 @@ Static Facade
 You can also mount a static facade for the Dom object.
 
 ```PHP
-PHPHtmlParser\StaticDom::mount();
+packages\PHPHtmlParser\StaticDom::mount();
 
 Dom::load('tests/big.hmtl');
 $objects = Dom::find('.content-border');
