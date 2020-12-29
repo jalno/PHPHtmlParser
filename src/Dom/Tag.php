@@ -205,17 +205,20 @@ class Tag
      */
     public function getStyleAttributeArray(): array
     {
-        $value = $this->getAttribute('style')['value'];
-
-        if ($value === null) {
+        $style = $this->getAttribute('style');
+        if (!$style) {
             return [];
         }
+        $value = $style['value'];
 
         $value = explode(';', substr(trim($value), 0, -1));
         $result = [];
         foreach ($value as $attr) {
+            if (!$attr) {
+                continue;
+            }
             $attr = explode(':', $attr);
-            $result[$attr[0]] = $attr[1];
+            $result[trim($attr[0])] = trim($attr[1]);
         }
 
         return $result;
