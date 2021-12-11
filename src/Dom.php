@@ -419,7 +419,7 @@ class Dom
      * id.
      *
      * @param string $id
-     * @return packages\PHPHtmlParser\Dom\AbstractNode|null
+     * @return \packages\PHPHtmlParser\Dom\AbstractNode|null
      */
     public function getElementById($id)
     {
